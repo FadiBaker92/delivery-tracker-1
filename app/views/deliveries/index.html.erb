@@ -38,7 +38,8 @@
 
         <textarea id="details_box" name="query_details" rows="3"></textarea>
       </div>
-      
+
+      <form action="/modify_delivery/:path_id" method="post"></form>
       <button>
         Log delivery
       </button>
@@ -46,31 +47,40 @@
   </div>
 </div>
 <hr>
-<h2>Waiting On</h2>
-<% @list_of_deliveries.each do |a_delivery| %>
-  <ul>
-    <% if a_delivery.arrived == true %>
-      <li>
-        <div><%= a_delivery.description%></div>
-        <div><%= a_delivery.supposed_to_arrive_on%></div>
-        <div><%= a_delivery.details%></div>
-        <button>Mark as received</button>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="waiting_on" style="background-color:lightgoldenrodyellow">
+
+  <h2>Waiting on</h2>
+
+  <% @list_of_deliveries.each do |a_delivery| %>
+    <ul>
+      <% if a_delivery.arrived == true %>
+        <li>
+          <div><%= a_delivery.description%></div>
+          <div><%= a_delivery.supposed_to_arrive_on%></div>
+          <div><%= a_delivery.details%></div>
+          <button>Mark as received</button>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
 <hr>
-<h2>Recieved</h2>
-<% @list_of_deliveries.each do |a_delivery| %>
-  <ul>
-    <% if a_delivery.arrived == false %>
-      <li>
-        <div><%= a_delivery.description%></div>
-        <div><%= a_delivery.supposed_to_arrive_on%></div>
-        <div><%= a_delivery.details%></div>
-        <button>Mark as received</button>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+
+<div class="received" style="background-color:lightgreen">
+
+  <h2>Recieved</h2>
+
+  <% @list_of_deliveries.each do |a_delivery| %>
+    <ul>
+      <% if a_delivery.arrived == false %>
+        <li>
+          <div><%= a_delivery.description%></div>
+          <div><%= a_delivery.updated_at%></div>
+          <div><%= a_delivery.details%></div>
+          <button>Mark as received</button>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
